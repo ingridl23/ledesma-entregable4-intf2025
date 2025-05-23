@@ -79,7 +79,22 @@ body, html {
 
         #btn-play:hover {
             filter: brightness(1.5);
+             scale: (1.2);
         }
+
+        
+        #sound-toggle:hover {
+            filter: brightness(1.5);
+        }
+
+        
+        .btninfo:hover {
+            filter: brightness(1.5);
+        }
+
+
+
+
 
         #sound-toggle {
     position: fixed;
@@ -90,6 +105,22 @@ body, html {
     cursor: pointer; /* Hace que parezca un botón */
     z-index: 1000; /* Asegura que quede arriba de otros elementos */
 }
+
+.btninfo{
+
+    position: fixed;
+    bottom: 20px; /* Lo fija en la parte inferior */
+    left: 20px;  /* Lo coloca en la esquina derecha */
+    width: 40px;  /* Tamaño más pequeño */
+    height: 40px;
+    cursor: pointer; /* Hace que parezca un botón */
+    z-index: 1000; /* Asegura que quede arriba de otros elementos */
+      background-image: url('../images/Info_BTN.png');
+    background-size: contain;
+}
+
+
+
 
 
 

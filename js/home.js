@@ -57,3 +57,26 @@ document.addEventListener("DOMContentLoaded", () => {
           isPlaying = !isPlaying;
       });
   });
+
+
+
+  
+
+  function generarInfoDejuego(){
+      let btninfo= document.createElement("button");
+       btninfo.classList.add("btninfo");
+ 
+       // Agregar evento de clic para mostrar instrucciones y redireccionar
+    btninfo.addEventListener("click", function() {
+      
+        window.location.href = "infogame.html"; // Redirigir al home del juego
+    });
+
+    // Agregar el botón al cuerpo del documento (o donde necesites)
+    document.body.appendChild(btninfo);
+
+
+}
+
+    // Llamar a la función para crear el botón
+  generarInfoDejuego();
