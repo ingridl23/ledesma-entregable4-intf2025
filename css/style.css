@@ -1,0 +1,96 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-family: sans-serif;
+}
+
+.parallax {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.fondo1 {
+  background-image: url('../images/vista-nave-espacial-tierra-noche-.avif'); /* vista nave espacial */
+  z-index: 1;
+}
+
+
+
+.personaje {
+  position: absolute;
+  z-index: 4;
+  width: 160px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 1s ease-out;
+}
+
+#seccion-juego {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #1c2f79;
+}
+
+#welcomegame{
+   color: aliceblue;
+   margin-bottom: 3rem;
+   font-family:cursive;
+   font-size: xx-large;
+   transform: scale(0.8);
+  opacity: 0;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+#welcomegame.animado {
+  transform: scale(1.5);
+  opacity: 1;
+}
+
+#btn-play {
+  padding: 20px 40px;
+  font-size: 24px;
+  background: limegreen;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+
+
+  transition: 0.3s ease-in-out;
+}
+
+
+ 
+
+        #btn-play:hover {
+            filter: brightness(1.5);
+        }
+
+        #sound-toggle {
+    position: fixed;
+    bottom: 20px; /* Lo fija en la parte inferior */
+    right: 20px;  /* Lo coloca en la esquina derecha */
+    width: 40px;  /* Tamaño más pequeño */
+    height: 40px;
+    cursor: pointer; /* Hace que parezca un botón */
+    z-index: 1000; /* Asegura que quede arriba de otros elementos */
+}
+
+
+
+/*##################################################################################################*/

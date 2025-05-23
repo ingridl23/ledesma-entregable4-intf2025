@@ -1,0 +1,159 @@
+
+body {
+    margin: 0;
+    max-height: 100%;
+}
+
+#contenedor,
+#cielo,
+#piso {
+    width: 100%;
+}
+
+#contenedor {
+    height: 100%;
+    overflow-y: hidden; 
+    overflow-x: hidden;
+}
+
+body {
+    overflow-y: hidden; 
+    overflow-x: hidden;
+}
+
+#cielo {
+    height: 80%;
+    background: url("../images/cielo2.jpg") repeat-x;
+    background-size: 1280px 100%;
+    position: absolute;
+    animation: sky 15s linear infinite;
+}
+
+@keyframes sky {
+    0% {
+        background-position: 1280px
+    }
+
+    100% {
+        background-position: 0
+    }
+}
+
+#piso {
+    height: 20%;
+    background: url("../images/piso1.png") repeat-x;
+    background-size: 831px 100%;
+    animation: floor 2s linear infinite;
+    position: absolute;
+    bottom: 0px;
+    z-index: 0;
+}
+
+@keyframes floor {
+    0% {
+        background-position: 831px
+    }
+
+    100% {
+        background-position: 0
+    }
+}
+
+#personaje {
+    width: 64px;
+    height: 64px;
+    z-index: 1;
+    position: absolute;
+    bottom: 18%;
+    left: 100px;
+    background: url("../images/1\ Pink_Monster/Pink_Monster_Walk_6.png") repeat-x;
+  background-size: 512px 52px; /* ancho total del sprite sheet */
+   
+}
+
+.correr {
+    animation: correr 1.5s steps(8) infinite;
+}
+
+.saltar {
+    animation: saltar 800ms cubic-bezier(0,0,.5,1) forwards; 
+}
+
+.caer {
+    animation: caer 600ms cubic-bezier(0,0,.5,1) forwards;
+}
+
+
+#sound-toggle {
+    position: fixed;
+    bottom: 20px; /* Lo fija en la parte inferior */
+    right: 20px;  /* Lo coloca en la esquina derecha */
+    width: 40px;  /* Tamaño más pequeño */
+    height: 40px;
+    cursor: pointer; /* Hace que parezca un botón */
+    z-index: 1000; /* Asegura que quede arriba de otros elementos */
+}
+
+
+
+@keyframes saltar {
+    from {
+        bottom: 18%;
+    }
+    to {
+        bottom: 50%;
+    }
+   
+}
+
+@keyframes caer {
+    from {
+        bottom: 50%;
+    }
+    to {
+        bottom: 18%;
+    }
+}
+
+
+@keyframes correr {
+    0% {
+        background-position: 0
+    }
+
+    100% {
+        background-position: -276px 0
+    }
+}
+
+
+
+
+
+
+
+.enemigo {
+    position: absolute;
+    bottom: 18%;
+    width: 95px;
+    height: 92px;
+   background-image: url("../images/cosaverdeenemigo.png"); /* Asegúrate de colocar la ruta correcta */
+    background-size: cover; /* Para que la imagen se ajuste al tamaño */
+
+
+    animation: enemigo 5.5s forwards linear;
+}
+
+
+
+@keyframes enemigo {
+    from {
+      left: 100%;
+    }
+    to {
+      left: -10%;
+    }
+}
+
+
+
