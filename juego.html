@@ -11,28 +11,41 @@
 <body>
 
     <div id="contenedor">
-       
-
-
-          
-    <audio id="background-music" autoplay loop>
-           <source src="audio/POL-shape-shift-short.wav" type="audio/mpeg">
-           Tu navegador no soporta la reproducción de audio.
-       </audio>
-   
-       <!-- Botón para activar/desactivar el sonido -->
-       <img src="images/Music_BTN.png" id="sound-toggle" alt="Sonido activado">
-    
-
-
-
-    
+        
+        
+        
+        <audio id="background-music" autoplay loop>
+            <source src="audio/POL-shape-shift-short.wav" type="audio/mpeg">
+            Tu navegador no soporta la reproducción de audio.
+        </audio>
+        
+        <!-- Botón para activar/desactivar el sonido -->
+        <img src="images/Music_BTN.png" id="sound-toggle" alt="Sonido activado">
+        
+        
+        
+        
+        
         <audio id="sonidoSalto" src="audio/salto.mp3" preload="auto"></audio>
         <div id="cielo"></div>
         <div id="personaje" class="correr"></div>
         <div id="piso"></div>
+        
+        <div id="hud">
+            <div>Puntos: <span id="puntos">0</span></div>
+            <div>Vidas: <span id="vidas">3</span></div>
+            <div>Tiempo: <span id="tiempo">60</span>s</div>
+        </div>
+        
     </div>
     
+    
+<div id="pantalla-gameover" style="display: none;">
+<img src="images/amongusmuerto.png" alt="Game Over" id="imagen-muerto">
+<h2>¡Game Over!</h2>
+<p>Puntaje final: <span id="puntos-finales">0</span></p>
+<button id="btn-reiniciar">Volver a jugar</button>
+</div>
     <script src="js/Personaje.js"></script>
     <script src="js/Runner.js"></script>
     <script src="js/Enemigo.js"></script>
