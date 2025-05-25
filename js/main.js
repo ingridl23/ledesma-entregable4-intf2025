@@ -30,6 +30,7 @@ const sonidosalto = new Audio("audio/salto.mp3");
 
 document.addEventListener('keydown', (e) => {
   if (e.code === "Space" || e.code === "ArrowUp") {
+    e.preventDefault(); // ✅ Evita que la barra active botones o haga scroll
     sonidosalto.play();
     runner.saltar();
   }
