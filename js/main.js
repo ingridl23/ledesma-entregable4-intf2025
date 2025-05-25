@@ -11,6 +11,9 @@ let tiempoRestante = 300; // en segundos
 const VIDAS_MAXIMAS = 5;
 let dificultad = 0; // nivel actual de dificultad alcanzado
 
+let juegoPausado = false;
+
+
 let temporizador;
 let gameLoopInterval;
 let enemigoInterval; 
@@ -53,17 +56,22 @@ let gameLoopInterval = setInterval(gameLoop, 50);
 let enemigoInterval; 
 let estrellaInterval;
 */
+function calcularVelocidadEnemigo() {
+  const base = 4000;
+  return Math.max(1000, base - dificultad * 500);
+}
+
+function calcularVelocidadEstrella() {
+  const base = 6000;
+  return Math.max(2000, base - dificultad * 300);
+}
 
 
-function iniciarJuego() {
-  // Iniciar el loop del juego
+function activarLoops() {
   gameLoopInterval = setInterval(gameLoop, 50);
+  enemigoInterval = setInterval(generarEnemigo, calcularVelocidadEnemigo());
+  estrellaInterval = setInterval(generarEstrella, calcularVelocidadEstrella());
 
-  // Iniciar generación de enemigos y estrellas
-  iniciarGeneracionEnemigos();
-  iniciarGeneracionEstrellas();
-
-  // Iniciar temporizador
   temporizador = setInterval(() => {
     tiempoRestante--;
     tiempoSpan.textContent = tiempoRestante;
@@ -73,6 +81,19 @@ function iniciarJuego() {
       gameOver("⏰ ¡Se acabó el tiempo!");
     }
   }, 1000);
+
+  document.getElementById("cielo").style.animationPlayState = "running";
+  document.getElementById("piso").style.animationPlayState = "running";
+
+  document.querySelectorAll(".enemigo, .estrella").forEach(el => {
+    el.style.animationPlayState = "running";
+  });
+}
+
+
+
+function iniciarJuego() {
+ activarLoops(); // 👈 esta línea reemplaza todo lo anterior
 
   console.log("🎮 Juego iniciado");
 }
@@ -448,3 +469,48 @@ document.addEventListener("DOMContentLoaded", () => {
     iniciarJuego(); // 👉 Inicia el juego recién ahora
   });
 });
+
+
+//generar el boton de pausa al juego , la partida en curso
+function generarBotonPausa() {
+  const btnPausa = document.createElement("button");
+  btnPausa.id = "btn-pausa";
+  btnPausa.title = "Pausar";
+  btnPausa.classList.add("btnpause");
+  btnPausa.style.backgroundImage = "url('images/Pause_BTN.png')";
+  document.body.appendChild(btnPausa);
+
+  // ✅ Mueve el evento ADENTRO de la función
+  btnPausa.addEventListener("click", () => {
+    if (!juegoPausado) {
+      pausarJuego();
+      btnPausa.style.backgroundImage = "url('images/Play_BTN.png')";
+    } else {
+      reanudarJuego();
+      btnPausa.style.backgroundImage = "url('images/Pause_BTN.png')";
+    }
+    juegoPausado = !juegoPausado;
+  });
+}
+generarBotonPausa(); // sigue igual
+
+
+// generar funcion para pausar el juego
+function pausarJuego() {
+  clearInterval(gameLoopInterval);
+  clearInterval(temporizador);
+  clearInterval(enemigoInterval);
+  clearInterval(estrellaInterval);
+
+  document.getElementById("cielo").style.animationPlayState = "paused";
+  document.getElementById("piso").style.animationPlayState = "paused";
+
+  document.querySelectorAll(".enemigo, .estrella").forEach(el => {
+    el.style.animationPlayState = "paused";
+  });
+}
+
+
+function reanudarJuego() {
+  activarLoops(); // 🔁 mismo código reutilizado
+}
