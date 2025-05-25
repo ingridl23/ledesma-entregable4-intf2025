@@ -1,5 +1,16 @@
-# Juego 2D - Trabajo Práctico
+# Juego 2D - Trabajo Práctico - Entregable 4
 
+**Trabajo Práctico - Interfaces de Usuario e Interacción**  
+**Tecnicatura Universitaria en Desarrollo de Aplicaciones Informáticas (TUDAI)**  
+**Tres Arroyos, 2025**
+
+### Profesores:
+- Ing. Hernández Gauna, Jorge G.  
+- A.P. Nelson Garrido  
+- Ayudante Alumno: Arana, Facundo  
+- Alumna: Ledesma, Ingrid Milagros
+
+---
 ## Descripción general
 
 Este proyecto es un juego en 2D desarrollado con **HTML, CSS y JavaScript**, que utiliza **animaciones keyframe** para el movimiento del personaje y la técnica de **parallax scrolling** para simular el desplazamiento del fondo. El juego cumple con todas las consignas del trabajo práctico, incluyendo elementos animados, interacciones, puntaje, límite de tiempo y un menú principal con sonido.

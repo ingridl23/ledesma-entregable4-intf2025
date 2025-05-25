@@ -4,7 +4,7 @@ let runner = new Runner();
 const sonido = document.getElementById("sonidoSalto");
   sonido.play(); // para reproducir
 
-//vlogica y manejo para puntaje y temporizador del juego durante la partida 
+//logica y manejo para puntaje y temporizador del juego durante la partida 
 let puntos = 0;
 let vidas = 3;
 let tiempoRestante = 300; // en segundos
@@ -24,18 +24,7 @@ const puntosSpan = document.getElementById("puntos");
 const vidasSpan = document.getElementById("vidas");
 const tiempoSpan = document.getElementById("tiempo");
 
-// Temporizador de 1 segundo
-/*
-let temporizador = setInterval(() => {
-  tiempoRestante--;
-  tiempoSpan.textContent = tiempoRestante;
 
-  if (tiempoRestante <= 0) {
-    clearInterval(temporizador);
-    gameOver("⏰ ¡Se acabó el tiempo!");
-  }
-}, 1000);
-*/
 
 const sonidosalto = new Audio("audio/salto.mp3");
 
@@ -134,8 +123,7 @@ function ajustarIntervalos() {
 
 
 
-/* cada 1 segundo genera un enemigo */
-/*setInterval(generarEnemigo, 1000);*/
+
 
 function colision(pj, enemigo) {
     const a = pj.getBoundingClientRect();
@@ -150,12 +138,6 @@ function colision(pj, enemigo) {
 }
 
 
-
-
-
-/**
- * Chequear estado del runner y de los enemigos
- */
 
 
 
@@ -438,7 +420,7 @@ function gameOver(mensaje) {
 }
 
 
-//funcion para agregar dificultyad a medida que se va obteniendo puntos en la partida escala ejemplo 10,20,40,60,80 ... etc
+//funcion para agregar dificultad a medida que se va obteniendo puntos en la partida escala ejemplo 10,20,40,60,80 ... etc
 
 function verificarDificultad() {
   const umbral = Math.pow(2, dificultad) * 10; // 10, 20, 40, 80...
@@ -460,7 +442,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("modal-instrucciones");
   const boton = document.getElementById("btn-iniciar");
 
-  // Detener scroll/animaciones mientras está el modal
+  // Detener scroll/animaciones mientras está el modal  sino se veia re feo cuando se jugaba
   document.body.style.overflow = "hidden";
 
   boton.addEventListener("click", () => {
@@ -480,7 +462,7 @@ function generarBotonPausa() {
   btnPausa.style.backgroundImage = "url('images/Pause_BTN.png')";
   document.body.appendChild(btnPausa);
 
-  // ✅ Mueve el evento ADENTRO de la función
+ 
   btnPausa.addEventListener("click", () => {
     if (!juegoPausado) {
       pausarJuego();
@@ -492,7 +474,7 @@ function generarBotonPausa() {
     juegoPausado = !juegoPausado;
   });
 }
-generarBotonPausa(); // sigue igual
+generarBotonPausa(); 
 
 
 // generar funcion para pausar el juego
@@ -512,5 +494,5 @@ function pausarJuego() {
 
 
 function reanudarJuego() {
-  activarLoops(); // 🔁 mismo código reutilizado
+  activarLoops(); //   código reutilizado
 }
