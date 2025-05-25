@@ -11,11 +11,18 @@ let tiempoRestante = 300; // en segundos
 const VIDAS_MAXIMAS = 5;
 let dificultad = 0; // nivel actual de dificultad alcanzado
 
+let temporizador;
+let gameLoopInterval;
+let enemigoInterval; 
+let estrellaInterval;
+
+
 const puntosSpan = document.getElementById("puntos");
 const vidasSpan = document.getElementById("vidas");
 const tiempoSpan = document.getElementById("tiempo");
 
 // Temporizador de 1 segundo
+/*
 let temporizador = setInterval(() => {
   tiempoRestante--;
   tiempoSpan.textContent = tiempoRestante;
@@ -25,7 +32,7 @@ let temporizador = setInterval(() => {
     gameOver("⏰ ¡Se acabó el tiempo!");
   }
 }, 1000);
-
+*/
 
 const sonidosalto = new Audio("audio/salto.mp3");
 
@@ -37,13 +44,38 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* cada 50 milisegundos verifica estado del juego */
+/* dejar esto apenas inicia el juego hacia que el modal de las instrucciones no funcione correctamente
+por eso saco estas funciones y las integro a todas dentro de una misma funcion para iniciar el juego luego que 
+el jugador haya leido las instrucciones
+
 
 let gameLoopInterval = setInterval(gameLoop, 50);
 let enemigoInterval; 
 let estrellaInterval;
+*/
 
 
+function iniciarJuego() {
+  // Iniciar el loop del juego
+  gameLoopInterval = setInterval(gameLoop, 50);
 
+  // Iniciar generación de enemigos y estrellas
+  iniciarGeneracionEnemigos();
+  iniciarGeneracionEstrellas();
+
+  // Iniciar temporizador
+  temporizador = setInterval(() => {
+    tiempoRestante--;
+    tiempoSpan.textContent = tiempoRestante;
+
+    if (tiempoRestante <= 0) {
+      clearInterval(temporizador);
+      gameOver("⏰ ¡Se acabó el tiempo!");
+    }
+  }, 1000);
+
+  console.log("🎮 Juego iniciado");
+}
 
 
 
@@ -236,11 +268,6 @@ function iniciarGeneracionEnemigos() {
     
 }
 
-// Llamar a la función una vez para iniciar el ciclo
-iniciarGeneracionEnemigos();
-
-
-
 
 
 //iniciar generacion de estrellas
@@ -252,14 +279,6 @@ function iniciarGeneracionEstrellas() {
     
     
 }
-
-
-
-iniciarGeneracionEstrellas();
-console.log("⏳ Iniciando generación de estrellas...");
-
-
-//generar las estrellas de puntaje y de vida
 
 
 
@@ -370,29 +389,31 @@ function generarEstrella() {
 
 //funcion para generar el game over de la partida 
 function gameOver(mensaje) {
-  // Detener todos los intervalos
   clearInterval(gameLoopInterval);
   clearInterval(temporizador);
   clearInterval(enemigoInterval);
   clearInterval(estrellaInterval);
 
-  // Detener animaciones en el body (opcional)
-  document.body.style.overflow = "hidden";
+  // Ocultar el personaje principal
+  document.getElementById("personaje").style.display = "none";
 
-  // Ocultar el contenedor del juego
-  document.getElementById("contenedor").style.display = "none";
+  // Mostrar el sprite animado de muerte
+  const muerto = document.getElementById("personaje-muerto");
+  muerto.style.display = "block";
 
-  // Mostrar la pantalla de Game Over
-  const pantalla = document.getElementById("pantalla-gameover");
-  pantalla.style.display = "flex";
+  // Esperar 1 segundo y mostrar pantalla de Game Over
+  setTimeout(() => {
+    document.getElementById("contenedor").style.display = "none";
+    document.getElementById("pantalla-gameover").style.display = "flex";
+    document.getElementById("puntos-finales").textContent = puntos;
 
-  // Mostrar el puntaje final
-  document.getElementById("puntos-finales").textContent = puntos;
-
-  // Agregar evento para reiniciar el juego
-  document.getElementById("btn-reiniciar").addEventListener("click", () => {
-    location.reload();
-  });
+    // ✅ Reiniciar el juego al hacer clic
+  const btnReiniciar = document.getElementById("btn-reiniciar");
+  if (btnReiniciar) {
+    btnReiniciar.onclick = () => location.reload();
+  }
+  
+  }, 1000);
 }
 
 
@@ -409,3 +430,21 @@ function verificarDificultad() {
     ajustarIntervalos();
   }
 }
+
+
+
+// accion del modal de instrucciones del juego antes de comenzar la partida
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("modal-instrucciones");
+  const boton = document.getElementById("btn-iniciar");
+
+  // Detener scroll/animaciones mientras está el modal
+  document.body.style.overflow = "hidden";
+
+  boton.addEventListener("click", () => {
+    modal.style.display = "none"; // Oculta el modal
+   
+    iniciarJuego(); // 👉 Inicia el juego recién ahora
+  });
+});

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animacion</title>
+    <title>Partida</title>
     
     <link rel="stylesheet" href="css/game.css">
 </head>
@@ -29,6 +29,8 @@
         <audio id="sonidoSalto" src="audio/salto.mp3" preload="auto"></audio>
         <div id="cielo"></div>
         <div id="personaje" class="correr"></div>
+        <div id="personaje-muerto"></div>
+
         <div id="piso"></div>
         
         <div id="hud">
@@ -46,6 +48,33 @@
 <p>Puntaje final: <span id="puntos-finales">0</span></p>
 <button id="btn-reiniciar">Volver a jugar</button>
 </div>
+
+
+
+<div id="modal-instrucciones" class="modal">
+  <div class="modal-contenido">
+    <h2>¿Cómo jugar?</h2>
+    <ul>
+      <li> Presioná <span class="tecla">ESPACIO</span> o Flecha arriba  ⬆️ para saltar.</li>
+      
+      <li>👾 Evitá chocar con los enemigos (perdés una vida).</li>
+    <li>
+  <img src="images/Star_02.png" class="icono-estrella" alt="estrella gris">
+  Tocá estrellas grises para sumar puntos.
+</li>
+<li>
+  <img src="images/Star_03.png" class="icono-estrella" alt="estrella amarilla">
+  Tocá estrellas amarillas para ganar vidas (solo si tenés 2 o menos).
+</li>
+
+      <li>🕒 El juego termina cuando el tiempo se agota o te quedás sin vidas.</li>
+      <li>🔥 A más puntos, el juego se vuelve más rápido.</li>
+    </ul>
+    <button id="btn-iniciar">¡Jugar!</button>
+  </div>
+</div>
+
+
     <script src="js/Personaje.js"></script>
     <script src="js/Runner.js"></script>
     <script src="js/Enemigo.js"></script>
