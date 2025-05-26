@@ -30,7 +30,7 @@ const sonidosalto = new Audio("audio/salto.mp3");
 
 document.addEventListener('keydown', (e) => {
   if (e.code === "Space" || e.code === "ArrowUp") {
-    e.preventDefault(); // ✅ Evita que la barra active botones o haga scroll
+    e.preventDefault(); //  Evita que la barra active botones o haga scroll
     sonidosalto.play();
     runner.saltar();
   }
@@ -411,7 +411,7 @@ function gameOver(mensaje) {
     document.getElementById("pantalla-gameover").style.display = "flex";
     document.getElementById("puntos-finales").textContent = puntos;
 
-    // ✅ Reiniciar el juego al hacer clic
+    //  Reiniciar el juego al hacer clic
   const btnReiniciar = document.getElementById("btn-reiniciar");
   if (btnReiniciar) {
     btnReiniciar.onclick = () => location.reload();
@@ -487,13 +487,29 @@ function pausarJuego() {
 
   document.getElementById("cielo").style.animationPlayState = "paused";
   document.getElementById("piso").style.animationPlayState = "paused";
+ 
 
-  document.querySelectorAll(".enemigo, .estrella").forEach(el => {
+  document.querySelectorAll("#personaje, .enemigo, .estrella").forEach(el => {
     el.style.animationPlayState = "paused";
+
+
+    
   });
+  document.getElementById("pantalla-pausa").style.display = "flex";
 }
 
 
 function reanudarJuego() {
   activarLoops(); //   código reutilizado
+
+  // Reanudar animaciones visuales
+  document.getElementById("cielo").style.animationPlayState = "running";
+  document.getElementById("piso").style.animationPlayState = "running";
+
+  document.querySelectorAll("#personaje, .enemigo, .estrella").forEach(el => {
+    el.style.animationPlayState = "running";
+
+    
+  });
+  document.getElementById("pantalla-pausa").style.display = "none";
 }
